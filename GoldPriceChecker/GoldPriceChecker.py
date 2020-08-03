@@ -54,7 +54,7 @@ while(1):
         with open("data.csv","a") as file:
             writer=csv.writer(file)
             t = now.strftime("%H:%M:%S")
-            d = now.date().strftime("%D/%M%Y")
+            d = now.date().strftime("%d/%m/%Y")
             writer.writerow([d,t,city,price[1:],change])
 
         
