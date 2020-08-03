@@ -19,7 +19,7 @@ def SENDAPI():
     client = Client(account_sid, auth_token)
     message = client.messages.create(to=to, from_=frm,body="GOLD PRICE DROPPED!\n"+final)
 
-#For table label
+#For table label on every first execution
 with open("data.csv","a") as file:
             writer=csv.writer(file)
             writer.writerow(["DATE","TIME","CITY","TIME","CHANGE"])
