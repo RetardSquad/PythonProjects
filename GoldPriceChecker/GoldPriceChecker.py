@@ -5,6 +5,7 @@ import win10toast                       #For Desktop Notifications
 import time                             #For Sleep
 from twilio.rest import Client          #For Twilio API
 from datetime import datetime           #For date and time
+import csv                              #For csv files
 
 
 #Twilio API Information
@@ -50,11 +51,11 @@ while(1):
         #For external file
         tosave="1gm 22k Price in " + city.upper().capitalize()+ ": Rs."+price.split('₹')[1]+" change: "+change
         now=datetime.now()
-        s1=now.strftime("%m-%d-%Y , %H:%M:%S ")
-        file_i=open("data.txt","a")
-        tosave="on "+s1+tosave
-        file_i.write(tosave+'\n')
-        file_i.close()
+        with open("data.csv","a") as file:
+            writer=csv.writer(file)
+            t = now.strftime("%H:%M:%S")
+            d = now.date().strftime("%D/%M%Y")
+            writer.writerow([d,t,city,price[1:],change])
 
         
         #For sound effect, desktop notification and WhatsApp/SMS Alert
