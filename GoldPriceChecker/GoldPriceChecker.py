@@ -46,7 +46,7 @@ while(1):
         
         #To locate the data from site
         price = soup.find("td",class_="center-text").text
-        change = soup.findAll("td",class_="center-text")[1].text
+        change = soup.findAll("td",class_="center-text")[5].text
 
         #Statement to print
         final="1gm 22k Price in " + city.upper().capitalize()+ ": "+price+" change: "+change
