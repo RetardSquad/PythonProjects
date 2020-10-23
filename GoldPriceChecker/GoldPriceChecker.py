@@ -22,7 +22,7 @@ def SENDAPI():
 #For table label on every first execution
 with open("data.csv","a") as file:
             writer=csv.writer(file)
-            writer.writerow(["DATE","TIME","CITY","TIME","CHANGE"])
+            writer.writerow(["DATE","TIME","CITY","PRICE","CHANGE"])
     
 while(1):
     
@@ -30,6 +30,8 @@ while(1):
     try:
         city_file=open("city.txt","r")
         city=city_file.readline().lower()
+        if city=="":
+            city="delhi"
         city_file.close()
     except:
         city="delhi"
@@ -54,7 +56,7 @@ while(1):
 
         
         #For external file
-        tosave="1gm 22k Price in " + city.upper().capitalize()+ ": Rs."+price.split('₹')[1]+" change: "+change
+        tosave="1gm 22k Price in " + city.upper().capitalize()+ ": Rs."+price.split('\u20b9')[1]+" change: "+change
         now=datetime.now()
         with open("data.csv","a") as file:
             writer=csv.writer(file)
@@ -79,7 +81,7 @@ while(1):
         	winsound.Beep(1000, 350)
         	toaster = win10toast.ToastNotifier().show_toast("Gold Price INCREASED!",final , duration=5, icon_path="gold.ico")
 
-    except:
+    except Exception as e:
         print("Not Found!")
 
     time.sleep(3600)      #Loops over every given seconds
